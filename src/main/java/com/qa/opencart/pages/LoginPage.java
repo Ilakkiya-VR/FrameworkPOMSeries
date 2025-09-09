@@ -127,7 +127,7 @@ public class LoginPage {
 
 @Step("Login with username:{0}and password{1}...........")
 	public AccountsPage doLogin(String appUserName,String appUserPwd)  {
-		System.out.println("Application Credentials::"+appUserName+","+appUserPwd);
+		System.out.println("Application Credentials::"+appUserName+","+"**********");
 		eleUtil.waitForElementVisible(email, 5).sendKeys(appUserName);
 		eleUtil.doSendKeys(pwd, appUserPwd);
 		eleUtil.doClick(loginbt);
