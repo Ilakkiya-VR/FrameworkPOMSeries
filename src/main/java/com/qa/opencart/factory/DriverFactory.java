@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,11 +24,13 @@ public class DriverFactory {
 	public WebDriver driver;
 	public Properties prop;
 	public static ThreadLocal<WebDriver> tlDriver=new ThreadLocal<WebDriver>();
+	private static final Logger log =LogManager.getLogger(DriverFactory.class);
 
 	public WebDriver initDriver(Properties prop) {
 
 		String browserName = prop.getProperty("browser");
-		System.out.println("Browser Name:: " + browserName);
+		//System.out.println("Browser Name:: " + browserName);
+		log.info("Browser Name:: " + browserName);
 		highlightEle = prop.getProperty("highlight");
 		
 		switch (browserName.trim().toLowerCase()) {
@@ -43,7 +47,9 @@ public class DriverFactory {
 			tlDriver.set(new EdgeDriver());
 			break;
 		default:
-			System.out.println(AppError.INVALID_BROWSER_MSG + browserName);
+			//System.out.println(AppError.INVALID_BROWSER_MSG + browserName);
+			log.info("Browser used::"+browserName);
+			log.error(AppError.INVALID_BROWSER_MSG);
 			throw new FrameworkException("=======INVALID BROWSER========");
 
 		}

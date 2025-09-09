@@ -3,11 +3,14 @@ package com.qa.opencart.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.qa.opencart.constants.AppConstants;
+import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.utils.ElementUtil;
 
 import io.qameta.allure.Step;
@@ -16,6 +19,7 @@ public class LoginPage {
 
 	private WebDriver driver;
 	private ElementUtil eleUtil;
+	private static final Logger log = LogManager.getLogger(LoginPage.class);
 
 	// private By locators: page objects
 	private final By homemenu = By.xpath("//ul[@class='breadcrumb']//a");
@@ -28,12 +32,12 @@ public class LoginPage {
 	private final By forgotpwdlink = By.linkText("Forgotten Password");
 	private final By NewCustcontinuebtn = By.linkText("Continue");
 	private final By optionList = By.xpath("//div[@class='list-group']/a");
-	private final By register=By.linkText("Register");
+	private final By register = By.linkText("Register");
 
 	// public constructor
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
-		eleUtil=new ElementUtil(driver);
+		eleUtil = new ElementUtil(driver);
 
 	}
 
@@ -41,29 +45,34 @@ public class LoginPage {
 
 	@Step("getPageTitle................")
 	public String getPageTitle() {
-		String title=eleUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE, 5);
-		System.out.println("Login Page Title: " + title);
+		String title = eleUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE, 5);
+		// System.out.println("Login Page Title: " + title);
+		log.info("Login Page Title: " + title);
 		return title;
 	}
+
 	@Step("getPageURL................")
 	public String getPageURL() {
-		String url= eleUtil.waitForURLContains(AppConstants.LOGIN_PAGE_FRACTION_URL, 5);
-		System.out.println("Login Page Title: " + url);
+		String url = eleUtil.waitForURLContains(AppConstants.LOGIN_PAGE_FRACTION_URL, 5);
+		// System.out.println("Login Page Title: " + url);
+		log.info("Login Page Title: " + url);
 		return url;
 	}
-@Step("ForgotPwdLinkExist...........")
+
+	@Step("ForgotPwdLinkExist...........")
 	public boolean isForgotPwdLinkExist() {
 		return eleUtil.isElementDisplayed(forgotpwdlink);
-		
+
 	}
-@Step("getting homeMenuCount...........")
+
+	@Step("getting homeMenuCount...........")
 	public int homeMenuCount() {
 
 		List<WebElement> hmeMenu = eleUtil.getElements(homemenu);
 		return hmeMenu.size();
 	}
 
-@Step("getting homeMenuDetails...........")
+	@Step("getting homeMenuDetails...........")
 
 	public List<String> homeMenuDetails() {
 
@@ -76,12 +85,13 @@ public class LoginPage {
 		return hmeMenuDetails;
 	}
 
-@Step("getting subHeadersCount...........")
+	@Step("getting subHeadersCount...........")
 	public int subHeadersCount() {
 		List<WebElement> subHeaderCount = eleUtil.getElements(subHeaders);
 		return subHeaderCount.size();
 	}
-@Step("getting subHeadersDetails...........")
+
+	@Step("getting subHeadersDetails...........")
 	public List<String> subHeadersDetails() {
 		List<WebElement> subHeadersde = eleUtil.getElements(subHeaders);
 		List<String> subHeaderDetails = new ArrayList<String>();
@@ -92,13 +102,13 @@ public class LoginPage {
 		return subHeaderDetails;
 	}
 
-@Step("getting returnCustLabelCount...........")
+	@Step("getting returnCustLabelCount...........")
 	public int returnCustLabelCount() {
-		List<WebElement> CustLabelCount =eleUtil.getElements(returnCustLabels);
+		List<WebElement> CustLabelCount = eleUtil.getElements(returnCustLabels);
 		return CustLabelCount.size();
 	}
 
-@Step("getting returnCustLabelDetail...........")
+	@Step("getting returnCustLabelDetail...........")
 	public List<String> returnCustLabelDetail() {
 		List<WebElement> CustLabelDetail = eleUtil.getElements(returnCustLabels);
 		List<String> CustLabelDetails = new ArrayList<String>();
@@ -109,15 +119,16 @@ public class LoginPage {
 		return CustLabelDetails;
 	}
 
-@Step("getting optionListCount...........")
+	@Step("getting optionListCount...........")
 	public int optionListCount() {
 		List<WebElement> optionListCount = eleUtil.getElements(optionList);
 		return optionListCount.size();
 	}
 
-@Step("getting optionListlDetails...........")
+	@Step("getting optionListlDetails...........")
 	public List<String> optionListlDetails() {
-		List<WebElement> optionListlDetail = eleUtil.getElements(optionList);		List<String> optionsDetails = new ArrayList<String>();
+		List<WebElement> optionListlDetail = eleUtil.getElements(optionList);
+		List<String> optionsDetails = new ArrayList<String>();
 		for (WebElement e : optionListlDetail) {
 			String text = e.getText();
 			optionsDetails.add(text);
@@ -125,17 +136,21 @@ public class LoginPage {
 		return optionsDetails;
 	}
 
-@Step("Login with username:{0}and password{1}...........")
-	public AccountsPage doLogin(String appUserName,String appUserPwd)  {
-		System.out.println("Application Credentials::"+appUserName+","+"**********");
+	@Step("Login with username:{0}and password{1}...........")
+	public AccountsPage doLogin(String appUserName, String appUserPwd) {
+		// System.out.println("Application Credentials::"+appUserName+","+"**********");
+		log.info("Application Credentials::" + appUserName + "," + "**********");
+
 		eleUtil.waitForElementVisible(email, 5).sendKeys(appUserName);
 		eleUtil.doSendKeys(pwd, appUserPwd);
 		eleUtil.doClick(loginbt);
 		return new AccountsPage(driver);
 	}
-@Step("navigateToRegisterPage...........")
+
+	@Step("navigateToRegisterPage...........")
 	public RegisterPage navigateToRegisterPage() {
-		eleUtil.clickElementWhenReady(register,5);
+		log.info("trying to navigate Registration Page");
+		eleUtil.clickElementWhenReady(register, 5);
 		return new RegisterPage(driver);
 	}
 }

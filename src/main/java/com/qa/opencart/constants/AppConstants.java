@@ -6,7 +6,7 @@ public class AppConstants {
 
 	// Login Page
 
-	public static final String LOGIN_PAGE_TITLE = "Account Login1";
+	public static final String LOGIN_PAGE_TITLE = "Account Login";
 	public static final String LOGIN_PAGE_FRACTION_URL = "route=account/login";
 
 	public static final List<String> EXPECTED_HOMEMENU_HEADERS_DETAILS = List.of("", "Account", "Login");
