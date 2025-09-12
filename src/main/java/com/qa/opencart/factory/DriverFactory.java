@@ -25,6 +25,7 @@ public class DriverFactory {
 	public Properties prop;
 	public static ThreadLocal<WebDriver> tlDriver=new ThreadLocal<WebDriver>();
 	private static final Logger log =LogManager.getLogger(DriverFactory.class);
+	public OptionsManager optionManager;
 
 	public WebDriver initDriver(Properties prop) {
 
@@ -32,19 +33,20 @@ public class DriverFactory {
 		//System.out.println("Browser Name:: " + browserName);
 		log.info("Browser Name:: " + browserName);
 		highlightEle = prop.getProperty("highlight");
+		optionManager=new OptionsManager(prop);
 		
 		switch (browserName.trim().toLowerCase()) {
 		case "chrome":
 			//driver = new ChromeDriver();
-			tlDriver.set(new ChromeDriver());
+			tlDriver.set(new ChromeDriver(optionManager.getChromeOptions()));
 			break;
 		case "firefox":
 			//driver = new FirefoxDriver();
-			tlDriver.set(new FirefoxDriver());
+			tlDriver.set(new FirefoxDriver(optionManager.getFirefoxOptions()));
 			break;
 		case "edge":
 			//driver = new EdgeDriver();
-			tlDriver.set(new EdgeDriver());
+			tlDriver.set(new EdgeDriver(optionManager.getEdgeOptions()));
 			break;
 		default:
 			//System.out.println(AppError.INVALID_BROWSER_MSG + browserName);
