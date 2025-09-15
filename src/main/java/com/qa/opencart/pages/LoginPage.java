@@ -33,6 +33,8 @@ public class LoginPage {
 	private final By NewCustcontinuebtn = By.linkText("Continue");
 	private final By optionList = By.xpath("//div[@class='list-group']/a");
 	private final By register = By.linkText("Register");
+	private final By incorrectLoginWarn= By.xpath("//div[@class='alert alert-danger alert-dismissible']");
+	private final By blankLoginWarn=By.cssSelector("div.alert.alert-danger.alert-dismissible");
 
 	// public constructor
 	public LoginPage(WebDriver driver) {
@@ -136,7 +138,7 @@ public class LoginPage {
 		return optionsDetails;
 	}
 
-	@Step("Login with username:{0}and password{1}...........")
+	@Step("Login with correctusername:{0}and password{1}...........")
 	public AccountsPage doLogin(String appUserName, String appUserPwd) {
 		// System.out.println("Application Credentials::"+appUserName+","+"**********");
 		log.info("Application Credentials::" + appUserName + "," + "**********");
@@ -147,6 +149,32 @@ public class LoginPage {
 		return new AccountsPage(driver);
 	}
 
+	@Step("Login with inccorrectusername:{0}and password{1}...........")
+	public boolean doLoginiWthIncorrecCredential(String appUserName, String appUserPwd) {
+		// System.out.println("Application Credentials::"+appUserName+","+"**********");
+		log.info("Application Credentials::" + appUserName + "," + "**********");
+		WebElement emailid =eleUtil.getElement(email);
+		emailid.clear();
+		eleUtil.doSendKeys(email, appUserName);
+		WebElement passwd =eleUtil.getElement(pwd);
+		passwd.clear();
+		eleUtil.doSendKeys(pwd, appUserPwd);
+		eleUtil.doClick(loginbt);
+		WebElement warnMsg=driver.findElement(incorrectLoginWarn);
+		String invalidmsg=warnMsg.getText();
+		log.warn("Warning message for invalid credential"+invalidmsg);
+		WebElement blankwarnMsg=driver.findElement(blankLoginWarn);
+		String blankMsg=blankwarnMsg.getText();
+		log.warn("Warning message for without credential"+blankMsg);
+		if(invalidmsg.contains(AppConstants.INVALID_LOGIN_CREDENTIAL_MSG)) {
+			return true;
+		}
+		else if(blankMsg.contains(AppConstants.WITHOUT_LOGIN_CREDENTIAL_MSG))
+		{
+			return true;
+		}
+		return false;
+	}
 	@Step("navigateToRegisterPage...........")
 	public RegisterPage navigateToRegisterPage() {
 		log.info("trying to navigate Registration Page");
