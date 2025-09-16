@@ -7,6 +7,8 @@ public class TestingPage {
 		int j=20;
 		int k=i*j;
 		System.out.println("Testing"+k);
+		System.out.println(i);
+		System.out.println(j);
 	}
 
 }
