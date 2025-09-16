@@ -163,7 +163,7 @@ public class LoginPageTest extends BaseTest {
 
 	@Test(priority = Integer.MAX_VALUE)
 	public void loginTest() {
-		AccountsPage accPage = loginPage.doLogin("march2024@open.com", "Selenium@12345");
+		AccountsPage accPage = loginPage.doLogin(prop.getProperty("username"),prop.getProperty("password"));
 		ChainTestListener.log("Acc Page Title::"+accPage);
 		Assert.assertEquals(accPage.accPageTitle(), "My Account");
 	}
