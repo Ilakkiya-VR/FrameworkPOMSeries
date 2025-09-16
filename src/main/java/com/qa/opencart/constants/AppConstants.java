@@ -6,10 +6,10 @@ public class AppConstants {
 
 	// Login Page
 
-	public static final String LOGIN_PAGE_TITLE = "Account Login";
+	public static final String EXPECTED_LOGIN_PAGE_TITLE = "Account Login";
 	public static final String LOGIN_PAGE_FRACTION_URL = "route=account/login";
-	public static final int EXPECTED_FOOTERLIST_COUNT = 15;
-
+	public static final String WITHOUT_LOGIN_CREDENTIAL_MSG="Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";
+	public static final String INVALID_LOGIN_CREDENTIAL_MSG="Warning: No match for E-Mail Address and/or Password.";
 	public static final List<String> EXPECTED_HOMEMENU_HEADERS_DETAILS = List.of("", "Account", "Login");
 	public static final int EXPECTED_HEADERS_COUNT = 3;
 
