@@ -15,6 +15,7 @@ import com.aventstack.chaintest.plugins.ChainTestListener;
 import com.qa.opencart.factory.DriverFactory;
 import com.qa.opencart.listeners.TestAllureListener;
 import com.qa.opencart.pages.AccountsPage;
+import com.qa.opencart.pages.CommonPage;
 import com.qa.opencart.pages.LoginPage;
 import com.qa.opencart.pages.ProductInfoPage;
 import com.qa.opencart.pages.RegisterPage;
@@ -36,6 +37,7 @@ public class BaseTest {
 	protected SearchResultPage searchResultsPage;
 	protected ProductInfoPage productInfoPage;
 	protected RegisterPage registerPage;
+	protected CommonPage commonPage;
 	
 	@Description("launch the browser:{0}.............")
 
@@ -52,6 +54,7 @@ public class BaseTest {
 
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);
+		commonPage=new CommonPage(driver);
 
 	}
 	
