@@ -68,6 +68,7 @@ public class DriverFactory {
 	}
 
 //this is used to initialise the prop with properties file
+	//mvn clean install -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv="dev
 //mvn clean install -Denv="qa"
 	public Properties initProp() {
 		prop = new Properties();
