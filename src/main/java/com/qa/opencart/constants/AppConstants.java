@@ -16,6 +16,7 @@ public class AppConstants {
 	public static final List<String> EXPECTED_HEADERS_DETAILS = List.of("New Customer", "Returning Customer");
 
 	public static final int EXPECTED_SUBHEADERS_COUNT = 3;
+	public static final int EXPECTED_FOOTERLIST_COUNT = 15;
 
 	public static final List<String> EXPECTED_SUBHEADERS_DETAILS = List.of(
 			"Register Account", "By creating an account you will be able to shop faster, "
@@ -53,6 +54,7 @@ public static final String EXPECTED_WARNING_ERROR_REVIEW =
 
 	//Register Page
 public static final String EXPECTED_USER_REGISTER_CONFIRM_MSG="Your Account Has Been Created!";
+
 	
 
 }
