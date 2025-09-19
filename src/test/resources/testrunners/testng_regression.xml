@@ -6,7 +6,7 @@
 
 	<listeners>
 		<listener
-			class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
+			class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
 		<listener
 			class-name="com.qa.opencart.listeners.TestAllureListener" />
 		<listener
@@ -20,32 +20,32 @@
 		</classes>
 	</test>
 
-	<!--<test name="Account Page Test">
-<parameter name ="browser" value="edge"/> 
-<classes>
-<class name="com.qa.opencart.test.AccPageTest"/>
-</classes>
-</test>
+	<test name="Account Page Test">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="com.qa.opencart.test.AccPageTest" />
+		</classes>
+	</test>
 
-<test name="Search Page Test">
-<parameter name ="browser" value="firefox"/> 
-<classes>
-<class name="com.qa.opencart.test.SearchTest"/>
-</classes>
-</test>
+	<test name="Search Page Test">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.qa.opencart.test.SearchTest" />
+		</classes>
+	</test>
 
-<test name="Product Info Page Test">
-<parameter name ="browser" value="chrome"/> 
-<classes>
-<class name="com.qa.opencart.test.ProductInfoTest"/>
-</classes>
-</test>
+	<test name="Product Info Page Test">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.opencart.test.ProductInfoTest" />
+		</classes>
+	</test>
 
-<test name="Register Page Test">
-<parameter name ="browser" value="chrome"/> 
-<classes>
-<class name="com.qa.opencart.test.RegisterPageTest"/>
-</classes>
-</test>-->
+	<test name="Register Page Test">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.qa.opencart.test.RegisterPageTest" />
+		</classes>
+	</test>
 
 </suite>
